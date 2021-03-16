@@ -2,7 +2,7 @@ import './styles.css';
 import ApiService from './apiService';
 import cardTemplate from './templates/card-template.hbs';
 import '@pnotify/core/dist/BrightTheme.css';
-import { alert } from '@pnotify/core';
+import { Stack, alert, error } from '@pnotify/core';
 import * as basicLightbox from 'basiclightbox';
 
 const refs = {
@@ -26,18 +26,26 @@ function onSearch(e) {
     .split(' ')
     .join('+');
   clearContent();
-  console.log(refs.gallery.children);
+
   apiService.resetPage();
 
   if (apiService.searchQuery === '') {
-    return alert('Please enter valid name');
+    return alert({
+      text: 'Please enter valid name',
+      delay: 1000,
+      sticker: false,
+      stack: new Stack({
+        dir1: 'up',
+        dir2: 'right',
+        firstpos1: 30,
+        firstpos2: 30,
+      }),
+    });
   }
 
-  apiService
-    .getImages()
-    .then(items =>
-      refs.gallery.insertAdjacentHTML('beforeend', cardTemplate(items)),
-    );
+  apiService.getImages().then(items => {
+    refs.gallery.insertAdjacentHTML('beforeend', cardTemplate(items));
+  });
 }
 
 let observer = new IntersectionObserver(entries => {

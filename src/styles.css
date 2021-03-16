@@ -1,3 +1,5 @@
+@import './basicLightbox.min.css';
+
 html {
   box-sizing: border-box;
 }
@@ -43,7 +45,6 @@ body {
 .photo-card {
   margin: 10px;
   height: 500px;
-}
-.stats {
-  justify-self: bottom;
+  display: grid;
+  grid-template-rows: auto;
 }
