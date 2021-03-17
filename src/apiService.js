@@ -7,7 +7,7 @@ export default class ApiService {
     this.page = 1;
   }
   fetchPhotos() {
-    const url = `${BASE_URL}/?image_type=photo&orientation=horizontal&q=${this.searchQuery}&page=${this.pageNumber}&per_page=12&key=${key}`;
+    const url = `${BASE_URL}/?image_type=photo&orientation=horizontal&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${key}`;
     return fetch(url);
   }
 
@@ -25,10 +25,10 @@ export default class ApiService {
   }
   async getImages(searchQuery) {
     try {
-      
       const response = await this.fetchPhotos();
       const result = await response.json();
       this.incrementPage();
+      console.log(this.page);
       return result.hits;
     } catch (err) {
       console.log(err);

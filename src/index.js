@@ -55,11 +55,11 @@ let observer = new IntersectionObserver(entries => {
       entry.isIntersecting &&
       refs.gallery.children.length > 0
     )
-    apiService
-      .getImages()
-      .then(items =>
-        refs.gallery.insertAdjacentHTML('beforeend', cardTemplate(items)),
-      );
+      apiService
+        .getImages()
+        .then(items =>
+          refs.gallery.insertAdjacentHTML('beforeend', cardTemplate(items)),
+        );
   });
 });
 observer.observe(refs.pageBottom);
@@ -78,3 +78,5 @@ function getBigImage(event) {
 `);
   instance.show();
 }
+
+
