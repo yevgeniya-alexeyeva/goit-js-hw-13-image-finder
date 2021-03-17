@@ -25,9 +25,10 @@ export default class ApiService {
   }
   async getImages(searchQuery) {
     try {
-      this.incrementPage();
+      
       const response = await this.fetchPhotos();
       const result = await response.json();
+      this.incrementPage();
       return result.hits;
     } catch (err) {
       console.log(err);
