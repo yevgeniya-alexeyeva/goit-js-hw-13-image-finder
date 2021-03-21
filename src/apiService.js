@@ -23,7 +23,7 @@ export default class ApiService {
   set query(newQuery) {
     this.searchQuery = newQuery;
   }
-  async getImages(searchQuery) {
+  async getImages() {
     try {
       const response = await this.fetchPhotos();
       const result = await response.json();

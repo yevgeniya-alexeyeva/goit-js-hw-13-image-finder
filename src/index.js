@@ -48,12 +48,11 @@ function onSearch(e) {
   });
 }
 
-let observer = new IntersectionObserver(entries => {
+const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (
-      apiService.searchQuery !== '' &&
-      entry.isIntersecting &&
-      refs.gallery.children.length > 0
+      refs.gallery.children.length &&
+      entries.some(entry => entry.isIntersecting)
     )
       apiService
         .getImages()
@@ -78,5 +77,3 @@ function getBigImage(event) {
 `);
   instance.show();
 }
-
-
